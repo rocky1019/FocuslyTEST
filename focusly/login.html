@@ -9,7 +9,7 @@
 <body class="container center">
   <div class="form-card">
     <h1>Welcome Back to Focusly</h1>
-    <form>
+    <form id="loginForm">
       <input type="email" placeholder="Email Address" required />
       <input type="password" placeholder="Password" required />
       <button type="submit">Log In</button>
@@ -18,12 +18,12 @@
     <button onclick="window.history.back()" class="back-btn">⬅ Back to Welcome</button>
   </div>
 
-  <!-- ✅ Firebase SDKs -->
-  <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js"></script>
-  <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js"></script>
+  <!-- ✅ Firebase v8 SDKs -->
+  <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-auth.js"></script>
 
+  <!-- ✅ Firebase Auth Code -->
   <script>
-    // ✅ Initialize Firebase
     const firebaseConfig = {
       apiKey: "AIzaSyCrqad_1R9l322_Rg0K-UtKImEMn2nqWcE",
       authDomain: "atharva19focusly.firebaseapp.com",
@@ -32,29 +32,25 @@
       messagingSenderId: "277269253347",
       appId: "1:277269253347:web:20b6f3cc29473f3093c9d6"
     };
+
     firebase.initializeApp(firebaseConfig);
     const auth = firebase.auth();
 
-    // ✅ Handle login
-    document.addEventListener("DOMContentLoaded", () => {
-      const form = document.querySelector("form");
+    document.getElementById("loginForm").addEventListener("submit", function(e) {
+      e.preventDefault();
+      const email = this.querySelector("input[type=email]").value;
+      const password = this.querySelector("input[type=password]").value;
 
-      form.addEventListener("submit", (e) => {
-        e.preventDefault();
-
-        const email = form.querySelector("input[type=email]").value;
-        const password = form.querySelector("input[type=password]").value;
-
-        auth.signInWithEmailAndPassword(email, password)
-          .then(() => {
-            alert("✅ Login successful!");
-            window.location.href = "room.html";
-          })
-          .catch((error) => {
-            alert("❌ Login failed: " + error.message);
-          });
-      });
+      auth.signInWithEmailAndPassword(email, password)
+        .then(() => {
+          alert("✅ Login successful!");
+          window.location.href = "room.html";
+        })
+        .catch((error) => {
+          alert("❌ Login failed: " + error.message);
+        });
     });
   </script>
 </body>
 </html>
+
