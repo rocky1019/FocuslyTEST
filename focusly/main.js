@@ -1,3 +1,4 @@
+// 🔹 Page Navigation Functions
 function createRoom() {
   const roomID = Math.floor(Math.random() * 100000);
   localStorage.setItem("roomID", roomID);
@@ -11,11 +12,7 @@ function joinRoom() {
     window.location.href = "room.html";
   }
 }
-function guestContinue() {
-  const guestID = Math.floor(Math.random() * 99999);
-  localStorage.setItem("roomID", guestID);
-  window.location.href = "room.html";
-}
+
 function guestContinue() {
   const guestID = Math.floor(Math.random() * 99999);
   localStorage.setItem("roomID", guestID);
@@ -31,9 +28,15 @@ function goToLogin() {
 }
 
 function learnMore() {
-  document.getElementById("features").scrollIntoView({ behavior: "smooth" });
+  const features = document.getElementById("features");
+  if (features) {
+    features.scrollIntoView({ behavior: "smooth" });
+  }
 }
-// Initialize Firebase
+
+// 🔹 Firebase Auth Setup
+console.log("🔥 main.js is running");
+
 const firebaseConfig = {
   apiKey: "AIzaSyCrqad_1R9l322_Rg0K-UtKImEMn2nqWcE",
   authDomain: "atharva19focusly.firebaseapp.com",
@@ -46,15 +49,16 @@ const firebaseConfig = {
 firebase.initializeApp(firebaseConfig);
 const auth = firebase.auth();
 
-// Only run this on login.html
-if (window.location.pathname.includes("login.html")) {
-  document.addEventListener("DOMContentLoaded", () => {
+document.addEventListener("DOMContentLoaded", () => {
+  if (window.location.pathname.includes("login.html")) {
     const form = document.querySelector("form");
-    if (!form) return;
+    if (!form) {
+      console.warn("⚠️ Login form not found.");
+      return;
+    }
 
     form.addEventListener("submit", (e) => {
       e.preventDefault();
-
       const email = form.querySelector("input[type='email']").value;
       const password = form.querySelector("input[type='password']").value;
 
@@ -67,6 +71,8 @@ if (window.location.pathname.includes("login.html")) {
           alert("❌ Login failed: " + error.message);
         });
     });
-  });
-}
+  }
+});
+
+
 
