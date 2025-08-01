@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Focusly – Study Room</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="room-container">
+    <h2 id="roomTitle">Study Room</h2>
+
+    <div class="section">
+      <h3>Focus Timer</h3>
+      <div id="timer">25:00</div>
+      <button onclick="startTimer()">Start</button>
+      <button onclick="resetTimer()">Reset</button>
+    </div>
+
+    <div class="section">
+      <h3>Shared Task List</h3>
+      <ul id="taskList">
+        <li>Sample Task 1</li>
+      </ul>
+      <input type="text" id="taskInput" placeholder="New task..." />
+      <button onclick="addTask()">Add Task</button>
+    </div>
+
+    <div class="section">
+      <h3>Chat</h3>
+      <div id="chatBox"></div>
+      <input type="text" id="chatInput" placeholder="Type a message..." />
+      <button onclick="sendMessage()">Send</button>
+    </div>
+  </div>
+
+  <script src="js/timer.js" defer></script>
+  <script src="js/room.js" defer></script>
+</body>
+</html>

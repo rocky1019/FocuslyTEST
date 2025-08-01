@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Log In – Focusly</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body class="container center">
+  <div class="form-card">
+    <h1>Welcome Back to Focusly</h1>
+    <form>
+      <input type="email" placeholder="Email Address" required />
+      <input type="password" placeholder="Password" required />
+      <button type="submit">Log In</button>
+    </form>
+    <p>New here? <a href="signup.html">Create an account</a></p>
+    <button onclick="window.history.back()" class="back-btn">⬅ Back to Welcome</button>
+  </div>
+  <script type="module">
+  import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
+  import { getAuth, signInWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
+
+  const firebaseConfig = {
+    apiKey: "YOUR_API_KEY",
+    authDomain: "YOUR_PROJECT.firebaseapp.com",
+    projectId: "YOUR_PROJECT_ID",
+    storageBucket: "YOUR_PROJECT.appspot.com",
+    messagingSenderId: "SENDER_ID",
+    appId: "APP_ID"
+  };
+
+  const app = initializeApp(firebaseConfig);
+  const auth = getAuth(app);
+
+  const form = document.querySelector("form");
+  form.addEventListener("submit", (e) => {
+    e.preventDefault();
+    const email = form.querySelector("input[type=email]").value;
+    const password = form.querySelector("input[type=password]").value;
+
+    signInWithEmailAndPassword(auth, email, password)
+      .then((userCredential) => {
+        alert("Login successful ✅");
+        window.location.href = "room.html"; // or dashboard.html
+      })
+      .catch((error) => {
+        alert("Login failed: " + error.message);
+      });
+  });
+</script>
+
+</body>
+</html>
