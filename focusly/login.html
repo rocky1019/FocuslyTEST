@@ -18,7 +18,7 @@
     <button onclick="window.history.back()" class="back-btn">⬅ Back to Welcome</button>
   </div>
 
-  <!-- ✅ Firebase SDKs via CDN -->
+  <!-- ✅ Firebase SDKs -->
   <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js"></script>
   <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js"></script>
 
@@ -33,11 +33,11 @@
       appId: "1:277269253347:web:20b6f3cc29473f3093c9d6"
     };
     firebase.initializeApp(firebaseConfig);
+    const auth = firebase.auth();
 
-    // ✅ Handle Login
+    // ✅ Handle login
     document.addEventListener("DOMContentLoaded", () => {
       const form = document.querySelector("form");
-      const auth = firebase.auth();
 
       form.addEventListener("submit", (e) => {
         e.preventDefault();
@@ -58,5 +58,3 @@
   </script>
 </body>
 </html>
-
-
