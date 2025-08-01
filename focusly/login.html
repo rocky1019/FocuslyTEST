@@ -17,55 +17,46 @@
     <p>New here? <a href="signup.html">Create an account</a></p>
     <button onclick="window.history.back()" class="back-btn">⬅ Back to Welcome</button>
   </div>
-  <!-- Firebase App (Core SDK) -->
-<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js"></script>
 
-<!-- Firebase Auth SDK -->
-<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js"></script>
+  <!-- ✅ Firebase SDKs via CDN -->
+  <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js"></script>
 
-<script>
-  // ✅ Your actual Firebase config
-  const firebaseConfig = {
-    apiKey: "AIzaSyCrqad_1R9l322_Rg0K-UtKImEMn2nqWcE",
-    authDomain: "atharva19focusly.firebaseapp.com",
-    projectId: "atharva19focusly",
-    storageBucket: "atharva19focusly.appspot.com",
-    messagingSenderId: "277269253347",
-    appId: "1:277269253347:web:20b6f3cc29473f3093c9d6"
-  };
+  <script>
+    // ✅ Initialize Firebase
+    const firebaseConfig = {
+      apiKey: "AIzaSyCrqad_1R9l322_Rg0K-UtKImEMn2nqWcE",
+      authDomain: "atharva19focusly.firebaseapp.com",
+      projectId: "atharva19focusly",
+      storageBucket: "atharva19focusly.appspot.com",
+      messagingSenderId: "277269253347",
+      appId: "1:277269253347:web:20b6f3cc29473f3093c9d6"
+    };
+    firebase.initializeApp(firebaseConfig);
 
-  // ✅ Initialize Firebase
-  firebase.initializeApp(firebaseConfig);
-  const auth = firebase.auth();
+    // ✅ Handle Login
+    document.addEventListener("DOMContentLoaded", () => {
+      const form = document.querySelector("form");
+      const auth = firebase.auth();
 
-  // ✅ Handle Login
-  document.addEventListener("DOMContentLoaded", () => {
-    const form = document.querySelector("form");
-    form.addEventListener("submit", (e) => {
-      e.preventDefault();
+      form.addEventListener("submit", (e) => {
+        e.preventDefault();
 
-      const email = form.querySelector("input[type=email]").value;
-      const password = form.querySelector("input[type=password]").value;
+        const email = form.querySelector("input[type=email]").value;
+        const password = form.querySelector("input[type=password]").value;
 
-      auth.signInWithEmailAndPassword(email, password)
-        .then((userCredential) => {
-          alert("✅ Login successful!");
-          window.location.href = "room.html"; // or dashboard
-        })
-        .catch((error) => {
-          alert("❌ Login failed: " + error.message);
-        });
+        auth.signInWithEmailAndPassword(email, password)
+          .then(() => {
+            alert("✅ Login successful!");
+            window.location.href = "room.html";
+          })
+          .catch((error) => {
+            alert("❌ Login failed: " + error.message);
+          });
+      });
     });
-  });
-</script>
-<!-- Firebase SDKs -->
-<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js"></script>
-<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js"></script>
-
-<!-- Your main JavaScript file -->
-<script src="js/main.js"></script>  <!-- Adjust path as needed -->
-
-
+  </script>
 </body>
 </html>
+
 
